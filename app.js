@@ -18,30 +18,30 @@ async function cargarPublicaciones() {
 
         const publicaciones = await respuesta.json();
 
+        if (publicaciones.length === 0) {
+            mensaje.textContent = "No hay publicaciones disponibles";
+            return;
+        }
+        
         listaPublicaciones.textContent = "";
 
         const seleccion = publicaciones.slice(0,5);
 
-        const tarjetas = seleccion.map(publicacion => document.createElement("article"));
-
-        const titulos = seleccion.map(titulo => {
-            document.createElement("h2")
-            titulo.textContent = seleccion.title
+        seleccion.forEach((publicacion) => {
+            const tarjeta = document.createElement("article");
+            const titulo = document.createElement("h2");
+            const contenido = document.createElement("p");
+            titulo.textContent = publicacion.title;
+            contenido.textContent = publicacion.body;
+            tarjeta.appendChild(titulo);
+            tarjeta.appendChild(contenido);
+            listaPublicaciones.appendChild(tarjeta);  
         });
-
-        const contenido = seleccion.map(contenido => {
-            document.createElement("p")
-            contenido.textContent = seleccion.body
-        });
-
-        tarjetas.appendChild(titulos);
-        tarjetas.appendChild(contenido);
-        listaPublicaciones.appendChild(tarjetas);
 
         mensaje.textContent = "";
 
     } catch (error) {
-        return "Error: " + error.message;
+        mensaje.textContent = "Error: " + error.message;
     }
 }
 
