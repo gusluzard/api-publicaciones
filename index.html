@@ -13,12 +13,16 @@
 
     <main class="contenedor">
         <h1>Publicaciones recientes</h1>
-
-        <button id="btnCargar">
-            Cargar publicaciones
-        </button>
-
+        <div class="contenedor-botones">
+        <button id="btnCargar">Cargar publicaciones</button>
+        <button id="btnLimpiar">Limpiar publicaciones</button>
+        </div>
+        
         <p id="mensaje"></p>
+
+        <div id="barraCarga" class="barra-carga oculto">
+            <div class="progreso"></div>
+        </div>
 
         <section id="listaPublicaciones">
             <!-- Aquí aparecerán las publicaciones -->
